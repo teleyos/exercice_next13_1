@@ -1,6 +1,6 @@
 'use client'
 import React from 'react';
-import {Box, Flex, HStack, Text} from "@kuma-ui/core";
+import {Box, Flex} from "@kuma-ui/core";
 
 interface Props {
     currentPage: number

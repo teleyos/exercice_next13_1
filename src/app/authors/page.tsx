@@ -3,10 +3,7 @@ import {User} from "@/types";
 import {Flex, Link, Text} from "@kuma-ui/core";
 import {NavBar} from "@/app/navbar";
 
-export default async function Authors({params, searchParams}: {
-    params: { id: string }
-    searchParams: { [key: string]: string | string[] | undefined }
-}) {
+export default async function Authors() {
     const authors = await getAuthors() as User[]
     return <Flex flexDirection={"column"}>
         <NavBar/>

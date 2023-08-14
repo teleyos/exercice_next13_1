@@ -12,9 +12,8 @@ const getAuthor = async (id: number) => {
     }
 }
 
-export default async function Author({params, searchParams}: {
+export default async function Author({params}: {
     params: { id: string }
-    searchParams: { [key: string]: string | string[] | undefined }
 }) {
 
     const posts = await getPosts() as Post[]

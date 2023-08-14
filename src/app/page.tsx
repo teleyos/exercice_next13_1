@@ -1,5 +1,5 @@
 import BlogList from "./blog-list";
-import {Flex, Link, Spacer, Text} from "@kuma-ui/core";
+import {Flex, Spacer, Text} from "@kuma-ui/core";
 import {Post, User} from "@/types";
 import {getPosts} from "@/app/getPosts";
 import {getAuthors} from "@/app/getAuthors";
