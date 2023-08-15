@@ -18,7 +18,6 @@ export default async function Author({params}: {
 
     const posts = await getPosts() as Post[]
     const author = await getAuthor(Number.parseInt(params.id)) as User;
-    console.log(params.id)
 
     return <Flex flexDir={"column"} justify={"center"}>
         <Flex justify={"space-between"}>

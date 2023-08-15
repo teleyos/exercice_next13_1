@@ -9,7 +9,7 @@ interface Props {
 
 function PostCard({post, author}: Props) {
     return (
-        <Box border={"black"} p={16}>
+        <Box borderWidth={"1px"} borderColor={"black"} borderStyle={"solid"} p={8} margin={8}>
             <Text fontSize='16px' fontWeight={"bold"} margin={0}>{post.id} - {post.title}</Text>
             {author &&
                 <Link

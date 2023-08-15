@@ -1,4 +1,4 @@
-import BlogList from "src/app/_components/blog-list";
+import BlogList from "@/app/_components/blog-list";
 import {Flex, Spacer, Text} from "@kuma-ui/core";
 import {Post, User} from "@/types";
 import {getPosts} from "@/app/_api/getPosts";
@@ -12,7 +12,7 @@ export default async function Home() {
 
 
     return (
-        <Flex flexDir={"column"} justify={"center"}>
+        <Flex flexDir={"column"} justify={"center"} marginX={124}>
             <NavBar/>
             <Text fontSize="16px" textAlign={"center"}>
                 Blog Posts
