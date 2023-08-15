@@ -1,29 +1,19 @@
-import {Spacer, Text} from "@kuma-ui/core";
-import BlogList from "@/app/_components/blog-list";
-import {Post, User} from "@/types";
-import {getPosts} from "@/app/_api/getPosts";
+import { getAuthor } from '@/app/_api/(authors)/getAuthor'
+import { getPosts } from '@/app/_api/getPosts'
+import BlogList from '@/app/_components/BlogList'
+import { Spacer, Text } from '@kuma-ui/core'
 
-const getAuthor = async (id: number) => {
-    try {
-        const authors = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
-        return await authors.json() as User
-    } catch (e) {
-        return console.error("couldn't fetch authors :", e)
-    }
-}
+export default async function Author({ params }: { params: { id: string } }) {
+  const posts = await getPosts()
+  const author = await getAuthor(parseInt(params.id))
 
-export default async function Author({params}: {
-    params: { id: string }
-}) {
-
-    const posts = await getPosts() as Post[]
-    const author = await getAuthor(Number.parseInt(params.id)) as User;
-
-    return <>
-        <Text fontSize="16px" textAlign={"center"}>
-            Blog Posts from {author.name}
-        </Text>
-        <Spacer size={"16px"}/>
-        <BlogList page={1} posts={posts.filter(p => p.userId == author.id)}/>
+  return (
+    <>
+      <Text fontSize='16px' textAlign='center'>
+        Blog Posts from {author.name}
+      </Text>
+      <Spacer size='16px' />
+      <BlogList page={1} posts={posts.filter(p => p.userId == author.id)} />
     </>
+  )
 }
