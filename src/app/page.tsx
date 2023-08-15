@@ -3,7 +3,6 @@ import {Spacer, Text} from "@kuma-ui/core";
 import {Post, User} from "@/types";
 import {getPosts} from "@/app/_api/getPosts";
 import {getAuthors} from "@/app/_api/getAuthors";
-import {NavBar} from "@/app/_components/navbar";
 
 export default async function Home() {
 
@@ -12,7 +11,6 @@ export default async function Home() {
 
 
     return <>
-        <NavBar/>
         <Text fontSize="16px" textAlign={"center"}>
             Blog Posts
         </Text>

@@ -1,4 +1,4 @@
-import {Flex, Link, Spacer, Text} from "@kuma-ui/core";
+import {Spacer, Text} from "@kuma-ui/core";
 import BlogList from "@/app/_components/blog-list";
 import {Post, User} from "@/types";
 import {getPosts} from "@/app/_api/getPosts";
@@ -20,10 +20,6 @@ export default async function Author({params}: {
     const author = await getAuthor(Number.parseInt(params.id)) as User;
 
     return <>
-        <Flex justify={"space-between"}>
-            <Link href={"/"}>Posts List</Link>
-            <Link href={"/authors"}>Author List</Link>
-        </Flex>
         <Text fontSize="16px" textAlign={"center"}>
             Blog Posts from {author.name}
         </Text>
