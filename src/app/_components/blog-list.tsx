@@ -1,9 +1,9 @@
 'use client'
 import React, {useState} from 'react';
 import {Post, User} from "@/types";
-import PostCard from "@/app/post-card";
+import PostCard from "@/app/_components/post-card";
 import {Box, VStack} from "@kuma-ui/core";
-import PagePicker from "@/app/page-picker";
+import PagePicker from "@/app/_components/page-picker";
 
 interface Props {
     page: number

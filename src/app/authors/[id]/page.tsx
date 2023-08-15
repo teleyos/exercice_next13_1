@@ -1,7 +1,7 @@
 import {Flex, Link, Spacer, Text} from "@kuma-ui/core";
-import BlogList from "@/app/blog-list";
+import BlogList from "@/app/_components/blog-list";
 import {Post, User} from "@/types";
-import {getPosts} from "@/app/getPosts";
+import {getPosts} from "@/app/_api/getPosts";
 
 const getAuthor = async (id: number) => {
     try {

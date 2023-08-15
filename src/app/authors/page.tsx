@@ -1,7 +1,7 @@
-import {getAuthors} from "@/app/getAuthors";
+import {getAuthors} from "@/app/_api/getAuthors";
 import {User} from "@/types";
 import {Flex, Link, Text} from "@kuma-ui/core";
-import {NavBar} from "@/app/navbar";
+import {NavBar} from "@/app/_components/navbar";
 
 export default async function Authors() {
     const authors = await getAuthors() as User[]
