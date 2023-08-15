@@ -19,7 +19,7 @@ export default async function Author({params}: {
     const posts = await getPosts() as Post[]
     const author = await getAuthor(Number.parseInt(params.id)) as User;
 
-    return <Flex flexDir={"column"} justify={"center"}>
+    return <>
         <Flex justify={"space-between"}>
             <Link href={"/"}>Posts List</Link>
             <Link href={"/authors"}>Author List</Link>
@@ -29,5 +29,5 @@ export default async function Author({params}: {
         </Text>
         <Spacer size={"16px"}/>
         <BlogList page={1} posts={posts.filter(p => p.userId == author.id)}/>
-    </Flex>
+    </>
 }

@@ -1,5 +1,6 @@
 import {KumaRegistry} from "@kuma-ui/next-plugin/registry"
 import {Poppins} from "next/font/google";
+import {Flex} from "@kuma-ui/core";
 
 // @ts-ignore
 const poppins = Poppins({
@@ -16,7 +17,11 @@ export default function RootLayout({
     return (
         <html lang={"en"} className={poppins.className}>
         <body>
-        <KumaRegistry>{children}</KumaRegistry>
+        <KumaRegistry>
+            <Flex flexDir={"column"} justify={"center"} className={"main_container"} paddingX={[0, 0, 64, 128, 256]}>
+                {children}
+            </Flex>
+        </KumaRegistry>
         </body>
         </html>
     );
