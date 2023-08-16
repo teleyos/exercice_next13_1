@@ -25,7 +25,7 @@ export default function Author({ params }: { params: { id: string } }) {
   return (
     <>
       <Heading>Blog Posts from {currentAuthor?.name ?? '...'}</Heading>
-      <SearchBar setSearchTerm={setSearchTerm} />
+      <SearchBar setSearchTerm={setSearchTerm} value='Search posts' />
       {posts && currentAuthor && (
         <BlogList
           page={1}

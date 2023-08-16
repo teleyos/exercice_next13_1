@@ -4,15 +4,16 @@ import { BsSearch } from 'react-icons/bs'
 
 interface Props {
   setSearchTerm: Dispatch<SetStateAction<string>>
+  value: string
 }
 
-const SearchBar = ({ setSearchTerm }: Props) => (
+const SearchBar = ({ setSearchTerm, value }: Props) => (
   <InputGroup w='full'>
     <InputLeftElement>
       <BsSearch color='gray' />
     </InputLeftElement>
     <Input
-      placeholder='Search article'
+      placeholder={value}
       variant='filled'
       onChange={event => {
         setSearchTerm(event.target.value)

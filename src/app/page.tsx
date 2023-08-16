@@ -30,7 +30,7 @@ const Home = () => {
   return (
     <>
       <Heading>Blog Posts</Heading>
-      <SearchBar setSearchTerm={setSearchTerm} />
+      <SearchBar setSearchTerm={setSearchTerm} value='Search posts' />
       {authors && posts && (
         <BlogList
           page={1}

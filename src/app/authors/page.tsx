@@ -34,7 +34,7 @@ const Authors = () => {
   return (
     <>
       <Heading>Author List</Heading>
-      <SearchBar setSearchTerm={setSearchTerm} />
+      <SearchBar setSearchTerm={setSearchTerm} value="Search authors" />
       <VStack spacing='16px' w='full'>
         {authors &&
           authors
