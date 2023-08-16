@@ -1,6 +1,8 @@
+'use client'
+
 import { NavBar } from '@/app/_components/NavBar'
-import { Flex } from '@kuma-ui/core'
-import { KumaRegistry } from '@kuma-ui/next-plugin/registry'
+import { Providers } from '@/app/providers'
+import { Center, Container, VStack } from '@chakra-ui/react'
 import { Poppins } from 'next/font/google'
 import { ReactNode } from 'react'
 
@@ -10,21 +12,20 @@ const poppins = Poppins({
   weight: '400'
 })
 
-export default function RootLayout({ children }: { children: ReactNode }) {
-  return (
-    <html lang='en' className={poppins.className}>
-      <body>
-        <KumaRegistry>
-          <NavBar />
-          <Flex
-            flexDir='column'
-            justify='center'
-            className='main_container'
-            paddingX={[0, 0, 64, 128, 256]}>
-            {children}
-          </Flex>
-        </KumaRegistry>
-      </body>
-    </html>
-  )
-}
+const RootLayout = ({ children }: { children: ReactNode }) => (
+  <html lang='en' className={poppins.className}>
+    <body>
+      <Providers>
+        <Container>
+          <Center>
+            <VStack>
+              <NavBar />
+              {children}
+            </VStack>
+          </Center>
+        </Container>
+      </Providers>
+    </body>
+  </html>
+)
+export default RootLayout

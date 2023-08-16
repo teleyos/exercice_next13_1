@@ -1,4 +1,6 @@
-import { Box, Button, Flex } from '@kuma-ui/core'
+'use client'
+
+import { Button, HStack, Text } from '@chakra-ui/react'
 import { Dispatch, SetStateAction } from 'react'
 
 interface Props {
@@ -8,23 +10,21 @@ interface Props {
 }
 
 const PagePicker = ({ currentPage, setPage, numberPage }: Props) => (
-  <Flex flexDirection='row' justify='space-evenly' alignItems='center' unselectable='on'>
-    <Button bgColor='white' onClick={() => setPage(1)}>
-      {'<<'}
-    </Button>
+  <HStack>
+    <Button onClick={() => setPage(1)}>{'<<'}</Button>
 
     <Button onClick={() => setPage(((currentPage + numberPage + 2) % numberPage) + 1)}>
       {'<'}
     </Button>
 
-    <Box>
+    <Text>
       {currentPage}/{numberPage}
-    </Box>
+    </Text>
 
     <Button onClick={() => setPage((currentPage % numberPage) + 1)}>{'>'}</Button>
 
     <Button onClick={() => setPage(numberPage)}>{'>>'}</Button>
-  </Flex>
+  </HStack>
 )
 
 export default PagePicker
