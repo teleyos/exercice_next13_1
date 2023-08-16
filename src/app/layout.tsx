@@ -2,7 +2,7 @@
 
 import { NavBar } from '@/app/_components/NavBar'
 import { Providers } from '@/app/providers'
-import { Center, Container, VStack } from '@chakra-ui/react'
+import { Container, VStack } from '@chakra-ui/react'
 import { Poppins } from 'next/font/google'
 import { ReactNode } from 'react'
 
@@ -16,13 +16,11 @@ const RootLayout = ({ children }: { children: ReactNode }) => (
   <html lang='en' className={poppins.className}>
     <body>
       <Providers>
-        <Container>
-          <Center>
-            <VStack>
-              <NavBar />
-              {children}
-            </VStack>
-          </Center>
+        <Container maxW='container.sm' centerContent>
+          <VStack w="full">
+            <NavBar />
+            {children}
+          </VStack>
         </Container>
       </Providers>
     </body>

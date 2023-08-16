@@ -1,10 +1,8 @@
 'use client'
 
-import { getAuthors } from '@/app/_api/(authors)/getAuthors'
-import { getPosts } from '@/app/_api/getPosts'
 import BlogList from '@/app/_components/BlogList'
 import SearchBar, { filterSearched } from '@/app/_components/SearchBar'
-import { Post, User } from '@/types'
+import { useAppStore } from '@/helpers/store'
 import { Heading } from '@chakra-ui/react'
 import { useState } from 'react'
 import useAsyncEffect from 'use-async-effect'
@@ -15,16 +13,15 @@ const handleError = (e: any) => {
 }
 
 const Home = () => {
-  const [posts, setPosts] = useState<Post[]>()
-  const [authors, setAuthors] = useState<User[]>()
   const [searchTerm, setSearchTerm] = useState<string>('')
+  const posts = useAppStore(state => state.posts)
+  const authors = useAppStore(state => state.authors)
+  const fetch = useAppStore(state => state.fetch)
 
   useAsyncEffect(async () => {
+    if (posts.length != 0) return
     try {
-      const posts = await getPosts()
-      const authors = await getAuthors()
-      setPosts(posts)
-      setAuthors(authors)
+      fetch()
     } catch (e) {
       handleError(e)
     }

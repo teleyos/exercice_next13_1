@@ -3,8 +3,8 @@
 import PagePicker from '@/app/_components/PagePicker'
 import PostCard from '@/app/_components/PostCard'
 import { Post, User } from '@/types'
-import { Text, VStack } from '@chakra-ui/react'
-import { useState } from 'react'
+import { Spinner, Text, VStack } from '@chakra-ui/react'
+import { useEffect, useState } from 'react'
 
 interface Props {
   page: number
@@ -16,6 +16,15 @@ const POST_PER_PAGE = 25 as const
 
 const BlogList = ({ page, posts, authors }: Props) => {
   const [currentPage, setPage] = useState(page)
+  const [showing, setShowing] = useState(false)
+
+  useEffect(() => {
+    setShowing(true)
+  }, [])
+
+  if (!showing) {
+    return <Spinner thickness='4px' speed='0.2s' emptyColor='gray.100' color='blue.400' size='xl' />
+  }
 
   const MyPagePicker = () => {
     const pageFloor = Math.floor(posts.length / POST_PER_PAGE)
@@ -25,7 +34,7 @@ const BlogList = ({ page, posts, authors }: Props) => {
         <PagePicker
           currentPage={currentPage}
           setPage={setPage}
-          numberPage={pageFloor + (posts.length - pageFloor > 1 ? 1 : 0)}
+          numberPage={pageFloor + (pageFloor != posts.length / POST_PER_PAGE ? 1 : 0)}
         />
       )
     )

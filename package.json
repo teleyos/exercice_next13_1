@@ -9,20 +9,27 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@chakra-ui/icons": "^2.1.0",
+    "@chakra-ui/next-js": "^2.1.5",
+    "@chakra-ui/react": "^2.8.0",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "@kuma-ui/core": "^1.1.2",
-    "@kuma-ui/next-plugin": "^1.1.4",
-    "@types/node": "20.4.9",
     "@types/react": "18.2.19",
-    "@types/react-dom": "18.2.7",
     "axios": "^1.4.0",
     "eslint": "^8.46.0",
     "eslint-config-next": "^13.4.16",
-    "framer-motion": "^10.15.1",
+    "framer-motion": "^10.15.2",
     "next": "13.4.13",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "typescript": "5.1.6"
+    "react-icons": "^4.10.1",
+    "typescript": "5.1.6",
+    "use-async-effect": "^2.2.7",
+    "use-debounce": "^9.0.4",
+    "zustand": "^4.4.1"
+  },
+  "devDependencies": {
+    "@types/node": "20.5.0",
+    "ts-node": "^10.9.1"
   }
 }

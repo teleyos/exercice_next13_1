@@ -13,9 +13,7 @@ const PagePicker = ({ currentPage, setPage, numberPage }: Props) => (
   <HStack>
     <Button onClick={() => setPage(1)}>{'<<'}</Button>
 
-    <Button onClick={() => setPage(((currentPage + numberPage + 2) % numberPage) + 1)}>
-      {'<'}
-    </Button>
+    <Button onClick={() => setPage(currentPage == 1 ? numberPage : currentPage - 1)}>{'<'}</Button>
 
     <Text>
       {currentPage}/{numberPage}

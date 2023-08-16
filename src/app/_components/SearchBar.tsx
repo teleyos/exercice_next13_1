@@ -30,7 +30,7 @@ interface filterSearchedProps {
 
 export const filterSearched = ({ searchTerm, paramsToCheck }: filterSearchedProps) => {
   for (let param of paramsToCheck) {
-    if (param.includes(searchTerm)) return true
+    if (param.toLowerCase().includes(searchTerm.toLowerCase())) return true
   }
   return false
 }
