@@ -7,7 +7,7 @@ import { Card, CardBody, CardFooter, CardHeader } from '@chakra-ui/card'
 import { Button, Heading, Text, useDisclosure } from '@chakra-ui/react'
 import { useState } from 'react'
 
-interface Props {
+type Props = {
   post: Post
   author?: User
 }

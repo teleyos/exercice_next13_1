@@ -2,7 +2,7 @@ import { Input, InputGroup, InputLeftElement } from '@chakra-ui/react'
 import { Dispatch, SetStateAction } from 'react'
 import { BsSearch } from 'react-icons/bs'
 
-interface Props {
+type Props = {
   setSearchTerm: Dispatch<SetStateAction<string>>
   value: string
 }

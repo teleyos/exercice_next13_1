@@ -21,7 +21,7 @@ const Home = () => {
   useAsyncEffect(async () => {
     if (posts.length != 0) return
     try {
-      fetch()
+      await fetch()
     } catch (e) {
       handleError(e)
     }

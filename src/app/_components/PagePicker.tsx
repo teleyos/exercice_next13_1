@@ -3,7 +3,7 @@
 import { Button, HStack, Text } from '@chakra-ui/react'
 import { Dispatch, SetStateAction } from 'react'
 
-interface Props {
+type Props = {
   currentPage: number
   setPage: Dispatch<SetStateAction<number>>
   numberPage: number

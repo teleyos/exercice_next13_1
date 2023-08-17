@@ -16,7 +16,7 @@ const Authors = () => {
   useAsyncEffect(async () => {
     if (authors.length != 0) return
     try {
-      fetch()
+      await fetch()
     } catch (e) {
       console.error("couldn't fetch authors :", e)
       throw e

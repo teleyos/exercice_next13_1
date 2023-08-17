@@ -4,13 +4,13 @@ import { Post, User } from '@/types'
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
-interface AppStore {
+type AppStore = {
   posts: Post[]
   authors: User[]
   setPosts: (posts: Post[]) => void
   setAuthors: (authors: User[]) => void
   reset: () => void
-  fetch: () => void
+  fetch: () => Promise<void>
   deletePost: (postId: number) => void
   editTitle: (postId: number, title: string) => void
   editBody: (postId: number, body: string) => void

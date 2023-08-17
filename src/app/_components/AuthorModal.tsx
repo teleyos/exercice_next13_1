@@ -17,7 +17,7 @@ import {
   VStack
 } from '@chakra-ui/react'
 
-interface Props {
+type Props = {
   author: User
   isOpen: boolean
   onClose: () => void

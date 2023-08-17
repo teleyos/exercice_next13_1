@@ -5,7 +5,7 @@ import { SearchIcon } from '@chakra-ui/icons'
 import { Box, Button, Flex, Heading, Text, useDisclosure } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 
-interface Props {
+type Props = {
   author: User
 }
 

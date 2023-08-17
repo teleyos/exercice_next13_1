@@ -6,7 +6,7 @@ import { Post, User } from '@/types'
 import { Spinner, Text, VStack } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 
-interface Props {
+type Props = {
   page: number
   posts: Post[]
   authors?: User[]
