@@ -2,28 +2,26 @@
 
 import BlogList from '@/app/_components/BlogList'
 import SearchBar, { filterSearched } from '@/app/_components/SearchBar'
+import errorToast from '@/helpers/errors'
 import { useAppStore } from '@/helpers/store'
-import { Heading } from '@chakra-ui/react'
+import { Heading, useToast } from '@chakra-ui/react'
+import isEmpty from 'lodash/isEmpty'
 import { useState } from 'react'
 import useAsyncEffect from 'use-async-effect'
-
-const handleError = (e: any) => {
-  console.error("couldn't fetch posts or authors :", e)
-  throw e
-}
 
 const Home = () => {
   const [searchTerm, setSearchTerm] = useState<string>('')
   const posts = useAppStore(state => state.posts)
   const authors = useAppStore(state => state.authors)
   const fetch = useAppStore(state => state.fetch)
+  const toast = useToast()
 
   useAsyncEffect(async () => {
-    if (posts.length != 0) return
+    if (!isEmpty(posts)) return
     try {
       await fetch()
     } catch (e) {
-      handleError(e)
+      errorToast(toast, "Can't fetch data")
     }
   }, [])
 

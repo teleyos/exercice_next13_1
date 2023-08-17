@@ -1,25 +1,26 @@
 'use client'
 import { AuthorCard } from '@/app/_components/AuthorCard'
 import SearchBar, { filterSearched } from '@/app/_components/SearchBar'
+import errorToast from '@/helpers/errors'
 import { useAppStore } from '@/helpers/store'
-import { Heading, Spinner, VStack } from '@chakra-ui/react'
+import { Heading, Spinner, useToast, VStack } from '@chakra-ui/react'
+import isEmpty from 'lodash/isEmpty'
 import { useEffect, useState } from 'react'
 import useAsyncEffect from 'use-async-effect'
 
 const Authors = () => {
   const authors = useAppStore(state => state.authors)
-  const posts = useAppStore(state => state.posts)
   const fetch = useAppStore(state => state.fetch)
   const [showing, setShowing] = useState(false)
   const [searchTerm, setSearchTerm] = useState('')
+  const toast = useToast()
 
   useAsyncEffect(async () => {
-    if (authors.length != 0) return
+    if (!isEmpty(authors)) return
     try {
       await fetch()
     } catch (e) {
-      console.error("couldn't fetch authors :", e)
-      throw e
+      errorToast(toast, "Can't fetch data")
     }
   }, [])
 
@@ -34,7 +35,7 @@ const Authors = () => {
   return (
     <>
       <Heading>Author List</Heading>
-      <SearchBar setSearchTerm={setSearchTerm} value="Search authors" />
+      <SearchBar setSearchTerm={setSearchTerm} value='Search authors' />
       <VStack spacing='16px' w='full'>
         {authors &&
           authors
