@@ -17,9 +17,9 @@ export const NavBar = () => {
         <Button>Author List</Button>
       </Link>
       <Button
-        onClick={() => {
+        onClick={async () => {
           reset()
-          fetch()
+          await fetch()
         }}>
         Reset App
       </Button>
