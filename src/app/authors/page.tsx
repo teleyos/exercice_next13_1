@@ -4,7 +4,9 @@ import SearchBar, { filterSearched } from '@/app/_components/SearchBar'
 import errorToast from '@/helpers/errors'
 import { useAppStore } from '@/helpers/store'
 import { Heading, Spinner, useToast, VStack } from '@chakra-ui/react'
+import filter from 'lodash/filter'
 import isEmpty from 'lodash/isEmpty'
+import map from 'lodash/map'
 import { useEffect, useState } from 'react'
 import useAsyncEffect from 'use-async-effect'
 
@@ -38,11 +40,10 @@ const Authors = () => {
       <SearchBar setSearchTerm={setSearchTerm} value='Search authors' />
       <VStack spacing='16px' w='full'>
         {authors &&
-          authors
-            .filter(author =>
-              filterSearched({ paramsToCheck: [author.name, author.username], searchTerm })
-            )
-            .map(author => <AuthorCard key={author.id} author={author} />)}
+          map(
+            filter(authors, author => filterSearched(searchTerm, [author.name, author.username])),
+            author => <AuthorCard key={author.id} author={author} />
+          )}
       </VStack>
     </>
   )

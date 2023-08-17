@@ -4,6 +4,13 @@ import PagePicker from '@/app/_components/PagePicker'
 import PostCard from '@/app/_components/PostCard'
 import { Post, User } from '@/types'
 import { Spinner, Text, VStack } from '@chakra-ui/react'
+import find from 'lodash/find'
+import floor from 'lodash/floor'
+import isEmpty from 'lodash/isEmpty'
+import isEqual from 'lodash/isEqual'
+import map from 'lodash/map'
+import size from 'lodash/size'
+import slice from 'lodash/slice'
 import { useEffect, useState } from 'react'
 
 type Props = {
@@ -27,14 +34,14 @@ const BlogList = ({ page, posts, authors }: Props) => {
   }
 
   const MyPagePicker = () => {
-    const pageFloor = Math.floor(posts.length / POST_PER_PAGE)
+    const numberPage = size(posts) / POST_PER_PAGE
 
     return (
-      posts.length > POST_PER_PAGE && (
+      size(posts) > POST_PER_PAGE && (
         <PagePicker
-          currentPage={currentPage}
+          currentPageIndex={currentPage}
           setPage={setPage}
-          numberPage={pageFloor + (pageFloor != posts.length / POST_PER_PAGE ? 1 : 0)}
+          lastPageIndex={floor(numberPage) + (!isEqual(numberPage, floor(numberPage)) ? 1 : 0)}
         />
       )
     )
@@ -43,11 +50,18 @@ const BlogList = ({ page, posts, authors }: Props) => {
   return (
     <>
       <MyPagePicker />
-      {posts.length > 0 ? (
+      {!isEmpty(posts) ? (
         <VStack>
-          {posts.slice((currentPage - 1) * POST_PER_PAGE, currentPage * POST_PER_PAGE).map(post => (
-            <PostCard post={post} author={authors?.find(a => a.id == post.userId)} key={post.id} />
-          ))}
+          {map(
+            slice(posts, (currentPage - 1) * POST_PER_PAGE, currentPage * POST_PER_PAGE),
+            post => (
+              <PostCard
+                post={post}
+                author={find(authors, author => isEqual(author.id, post.userId))}
+                key={post.id}
+              />
+            )
+          )}
         </VStack>
       ) : (
         <Text>No posts found with these filter</Text>

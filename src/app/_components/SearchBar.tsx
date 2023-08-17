@@ -1,4 +1,6 @@
 import { Input, InputGroup, InputLeftElement } from '@chakra-ui/react'
+import includes from 'lodash/includes'
+import lowerCase from 'lodash/lowerCase'
 import { Dispatch, SetStateAction } from 'react'
 import { MdSearch } from 'react-icons/md'
 
@@ -25,14 +27,9 @@ const SearchBar = ({ setSearchTerm, value }: Props) => (
 
 export default SearchBar
 
-interface filterSearchedProps {
-  searchTerm: string
-  paramsToCheck: string[]
-}
-
-export const filterSearched = ({ searchTerm, paramsToCheck }: filterSearchedProps) => {
+export const filterSearched = (searchTerm: string, paramsToCheck: string[]) => {
   for (let param of paramsToCheck) {
-    if (param.toLowerCase().includes(searchTerm.toLowerCase())) return true
+    if (includes(lowerCase(param), lowerCase(searchTerm))) return true
   }
   return false
 }

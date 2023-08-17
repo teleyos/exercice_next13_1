@@ -1,27 +1,31 @@
 'use client'
 
 import { Button, HStack, Text } from '@chakra-ui/react'
+import isEqual from 'lodash/isEqual'
 import { Dispatch, SetStateAction } from 'react'
 
 type Props = {
-  currentPage: number
+  currentPageIndex: number
   setPage: Dispatch<SetStateAction<number>>
-  numberPage: number
+  lastPageIndex: number
 }
 
-const PagePicker = ({ currentPage, setPage, numberPage }: Props) => (
+const PagePicker = ({ currentPageIndex, setPage, lastPageIndex }: Props) => (
   <HStack>
     <Button onClick={() => setPage(1)}>{'<<'}</Button>
 
-    <Button onClick={() => setPage(currentPage == 1 ? numberPage : currentPage - 1)}>{'<'}</Button>
+    <Button
+      onClick={() => setPage(isEqual(currentPageIndex, 1) ? lastPageIndex : currentPageIndex - 1)}>
+      {'<'}
+    </Button>
 
     <Text>
-      {currentPage}/{numberPage}
+      {currentPageIndex}/{lastPageIndex}
     </Text>
 
-    <Button onClick={() => setPage((currentPage % numberPage) + 1)}>{'>'}</Button>
+    <Button onClick={() => setPage((currentPageIndex % lastPageIndex) + 1)}>{'>'}</Button>
 
-    <Button onClick={() => setPage(numberPage)}>{'>>'}</Button>
+    <Button onClick={() => setPage(lastPageIndex)}>{'>>'}</Button>
   </HStack>
 )
 

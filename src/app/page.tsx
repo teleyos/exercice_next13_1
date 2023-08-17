@@ -5,6 +5,7 @@ import SearchBar, { filterSearched } from '@/app/_components/SearchBar'
 import errorToast from '@/helpers/errors'
 import { useAppStore } from '@/helpers/store'
 import { Heading, useToast } from '@chakra-ui/react'
+import filter from 'lodash/filter'
 import isEmpty from 'lodash/isEmpty'
 import { useState } from 'react'
 import useAsyncEffect from 'use-async-effect'
@@ -32,9 +33,7 @@ const Home = () => {
       {authors && posts && (
         <BlogList
           page={1}
-          posts={posts.filter(post =>
-            filterSearched({ searchTerm, paramsToCheck: [post.title, post.body] })
-          )}
+          posts={filter(posts, post => filterSearched(searchTerm, [post.title, post.body]))}
           authors={authors}
         />
       )}

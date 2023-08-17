@@ -5,7 +5,11 @@ import errorToast from '@/helpers/errors'
 import { useAppStore } from '@/helpers/store'
 import { User } from '@/types'
 import { Heading, useToast } from '@chakra-ui/react'
+import filter from 'lodash/filter'
+import head from 'lodash/head'
 import isEmpty from 'lodash/isEmpty'
+import isEqual from 'lodash/isEqual'
+import parseInt from 'lodash/parseInt'
 import { useState } from 'react'
 import useAsyncEffect from 'use-async-effect'
 
@@ -23,7 +27,7 @@ export default function Author({ params }: { params: { id: string } }) {
     } catch (e) {
       errorToast(toast, "Can't fetch data")
     }
-    setCurrentAuthor(authors.filter(author => author.id == parseInt(params.id))[0])
+    setCurrentAuthor(head(filter(authors, author => isEqual(author.id, parseInt(params.id)))))
   }, [])
 
   return (
@@ -33,9 +37,10 @@ export default function Author({ params }: { params: { id: string } }) {
       {posts && currentAuthor && (
         <BlogList
           page={1}
-          posts={posts
-            .filter(post => post.userId == parseInt(params.id))
-            .filter(post => filterSearched({ searchTerm, paramsToCheck: [post.body, post.title] }))}
+          posts={filter(
+            filter(posts, post => isEqual(post.userId, parseInt(params.id))),
+            post => filterSearched(searchTerm, [post.body, post.title])
+          )}
         />
       )}
     </>

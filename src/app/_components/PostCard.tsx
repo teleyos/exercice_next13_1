@@ -29,17 +29,14 @@ const PostCard = ({ post, author }: Props) => {
             as='span'
             contentEditable={true}
             suppressContentEditableWarning={true}
-            onInput={e => {
-              const elem = e.target as HTMLElement
-              setNewTitle(elem.innerText)
-            }}
+            onInput={e => setNewTitle((e.target as HTMLElement).innerText)}
             onBlur={() => {
               editTitle(post.id, newTitle)
             }}>
             {post.title}
           </Text>
         </Heading>
-        <Text mt="8px" color='blueviolet' onClick={onOpen} cursor='pointer'>
+        <Text mt='8px' color='blueviolet' onClick={onOpen} cursor='pointer'>
           {author?.name}
         </Text>
         {author && <AuthorModal author={author} isOpen={isOpen} onClose={onClose} />}
@@ -51,10 +48,7 @@ const PostCard = ({ post, author }: Props) => {
           p='0px'
           contentEditable={true}
           suppressContentEditableWarning={true}
-          onInput={e => {
-            const elem = e.target as HTMLElement
-            setNewBody(elem.innerText)
-          }}
+          onInput={e => setNewBody((e.target as HTMLElement).innerText)}
           onBlur={() => editBody(post.id, newBody)}>
           {post.body}
         </Text>

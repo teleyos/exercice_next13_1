@@ -1,4 +1,4 @@
-export interface User {
+export type User = {
   id: number
   name: string
   username: string
@@ -22,7 +22,7 @@ export interface User {
   }
 }
 
-export interface Post {
+export type Post = {
   userId: number
   id: number
   title: string
