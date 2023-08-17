@@ -1,6 +1,6 @@
 import { Input, InputGroup, InputLeftElement } from '@chakra-ui/react'
 import { Dispatch, SetStateAction } from 'react'
-import { BsSearch } from 'react-icons/bs'
+import { MdSearch } from 'react-icons/md'
 
 type Props = {
   setSearchTerm: Dispatch<SetStateAction<string>>
@@ -10,7 +10,7 @@ type Props = {
 const SearchBar = ({ setSearchTerm, value }: Props) => (
   <InputGroup w='full'>
     <InputLeftElement>
-      <BsSearch color='gray' />
+      <MdSearch color='#708095' />
     </InputLeftElement>
     <Input
       placeholder={value}
@@ -18,6 +18,7 @@ const SearchBar = ({ setSearchTerm, value }: Props) => (
       onChange={event => {
         setSearchTerm(event.target.value)
       }}
+      pb='3px'
     />
   </InputGroup>
 )

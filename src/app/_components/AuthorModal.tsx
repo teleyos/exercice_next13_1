@@ -1,5 +1,4 @@
 import { User } from '@/types'
-import { AtSignIcon, EmailIcon, InfoIcon, PhoneIcon } from '@chakra-ui/icons'
 import { Link } from '@chakra-ui/next-js'
 import {
   Button,
@@ -16,6 +15,8 @@ import {
   Text,
   VStack
 } from '@chakra-ui/react'
+import { IoMdGlobe, IoMdPin } from 'react-icons/io'
+import { MdEmail, MdPhone } from 'react-icons/md'
 
 type Props = {
   author: User
@@ -35,20 +36,20 @@ const AuthorModal = ({ author, isOpen, onClose }: Props) => (
       <ModalBody>
         <VStack>
           <Flex w='full' justifyContent='left' alignItems='center'>
-            <PhoneIcon mr='8px' />
-            <Text>{author.phone}</Text>
+            <MdPhone />
+            <Text ml='8px'>{author.phone}</Text>
           </Flex>
           <Flex w='full' justifyContent='left' alignItems='center'>
-            <AtSignIcon mr='8px' />
-            <Text>{author.website}</Text>
+            <IoMdGlobe />
+            <Text ml='8px'>{author.website}</Text>
           </Flex>
           <Flex w='full' justifyContent='left' alignItems='center'>
-            <EmailIcon mr='8px' />
-            <Text>{author.email}</Text>
+            <MdEmail />
+            <Text ml='8px'>{author.email}</Text>
           </Flex>
           <Flex w='full' justifyContent='left' alignItems='center'>
-            <InfoIcon mr='8px' />
-            <Text>
+            <IoMdPin />
+            <Text ml='8px'>
               {author.address.suite} {author.address.street}, {author.address.zipcode}{' '}
               {author.address.city}
             </Text>

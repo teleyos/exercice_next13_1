@@ -1,9 +1,8 @@
 import AuthorModal from '@/app/_components/AuthorModal'
 import { User } from '@/types'
 import { Card, CardHeader } from '@chakra-ui/card'
-import { SearchIcon } from '@chakra-ui/icons'
 import { Box, Button, Flex, Heading, Text, useDisclosure } from '@chakra-ui/react'
-import { useEffect, useState } from 'react'
+import { MdSearch } from 'react-icons/md'
 
 type Props = {
   author: User
@@ -11,15 +10,6 @@ type Props = {
 
 export const AuthorCard = ({ author }: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const [showing, setShowing] = useState(false)
-
-  useEffect(() => {
-    setShowing(true)
-  }, [])
-
-  if (!showing) {
-    return null
-  }
 
   return (
     <>
@@ -31,7 +21,7 @@ export const AuthorCard = ({ author }: Props) => {
               <Text>@{author.username}</Text>
             </Box>
             <Button onClick={onOpen}>
-              <SearchIcon />
+              <MdSearch />
             </Button>
           </Flex>
         </CardHeader>
