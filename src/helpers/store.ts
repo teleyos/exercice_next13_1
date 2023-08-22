@@ -7,6 +7,7 @@ import { persist } from 'zustand/middleware'
 type AppStore = {
   posts: Post[]
   authors: User[]
+  loading: boolean
   setPosts: (posts: Post[]) => void
   setAuthors: (authors: User[]) => void
   reset: () => void
@@ -19,15 +20,16 @@ type AppStore = {
 export const useAppStore = create(
   persist<AppStore>(
     (set, get) => ({
+      loading: true,
       posts: [],
       authors: [],
       setPosts: posts => set({ posts }),
       setAuthors: authors => set({ authors }),
-      reset: () => set({ posts: [], authors: [] }),
+      reset: () => set({ posts: [], authors: [], loading: true }),
       fetch: async () => {
         const posts = await getPosts()
         const authors = await getAuthors()
-        set({ posts, authors })
+        set({ posts, authors, loading: false })
       },
       deletePost: postId => {
         set({ posts: get().posts.filter(post => post.id != postId) })

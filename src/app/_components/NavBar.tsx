@@ -1,28 +1,36 @@
 'use client'
 
 import { useAppStore } from '@/helpers/store'
-import { Link } from '@chakra-ui/next-js'
-import { Button, HStack } from '@chakra-ui/react'
+import { Button, Menu, MenuButton, MenuItem, MenuList, Text } from '@chakra-ui/react'
+import Link from 'next/link'
+import { IoChevronDown } from 'react-icons/io5'
+import { shallow } from 'zustand/shallow'
 
 export const NavBar = () => {
-  const reset = useAppStore(state => state.reset)
-  const fetch = useAppStore(state => state.fetch)
+  const [reset, fetch] = useAppStore(state => [state.reset, state.fetch], shallow)
 
   return (
-    <HStack>
-      <Link href='/'>
-        <Button>Posts List</Button>
-      </Link>
-      <Link href='/authors'>
-        <Button>Author List</Button>
-      </Link>
-      <Button
-        onClick={async () => {
-          reset()
-          await fetch()
-        }}>
-        Reset App
-      </Button>
-    </HStack>
+    <Menu>
+      <MenuButton as={Button} rightIcon={<IoChevronDown />}>
+        Actions
+      </MenuButton>
+      <MenuList>
+        <MenuItem>
+          <Link href='/'>Posts List</Link>
+        </MenuItem>
+        <MenuItem>
+          <Link href='/authors'>Author List</Link>
+        </MenuItem>
+        <MenuItem>
+          <Text
+            onClick={async () => {
+              reset()
+              await fetch()
+            }}>
+            Reset App
+          </Text>
+        </MenuItem>
+      </MenuList>
+    </Menu>
   )
 }

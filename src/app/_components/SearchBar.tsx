@@ -1,11 +1,12 @@
+'use client'
 import { Input, InputGroup, InputLeftElement } from '@chakra-ui/react'
 import includes from 'lodash/includes'
 import lowerCase from 'lodash/lowerCase'
-import { Dispatch, SetStateAction } from 'react'
+import some from 'lodash/some'
 import { MdSearch } from 'react-icons/md'
 
 type Props = {
-  setSearchTerm: Dispatch<SetStateAction<string>>
+  setSearchTerm: (searchTerm: string) => void
   value: string
 }
 
@@ -20,7 +21,7 @@ const SearchBar = ({ setSearchTerm, value }: Props) => (
       onChange={event => {
         setSearchTerm(event.target.value)
       }}
-      pb='3px'
+      pb={0.5}
     />
   </InputGroup>
 )
@@ -28,8 +29,5 @@ const SearchBar = ({ setSearchTerm, value }: Props) => (
 export default SearchBar
 
 export const filterSearched = (searchTerm: string, paramsToCheck: string[]) => {
-  for (let param of paramsToCheck) {
-    if (includes(lowerCase(param), lowerCase(searchTerm))) return true
-  }
-  return false
+  return some(paramsToCheck, param => includes(lowerCase(param), lowerCase(searchTerm)))
 }

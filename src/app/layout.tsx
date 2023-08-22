@@ -14,10 +14,13 @@ const poppins = Poppins({
 
 const RootLayout = ({ children }: { children: ReactNode }) => (
   <html lang='en' className={poppins.className}>
+    <head>
+      <title>Owo</title>
+    </head>
     <body>
       <Providers>
         <Container maxW='container.sm' centerContent>
-          <VStack w="full">
+          <VStack w='full'>
             <NavBar />
             {children}
           </VStack>

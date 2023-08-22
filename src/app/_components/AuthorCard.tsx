@@ -1,3 +1,4 @@
+'use client'
 import AuthorModal from '@/app/_components/AuthorModal'
 import { User } from '@/types'
 import { Card, CardHeader } from '@chakra-ui/card'
@@ -14,7 +15,7 @@ export const AuthorCard = ({ author }: Props) => {
   return (
     <>
       <Card w='full'>
-        <CardHeader p='16px'>
+        <CardHeader p={4}>
           <Flex justifyContent='space-between'>
             <Box>
               <Heading size='md'>{author.name}</Heading>

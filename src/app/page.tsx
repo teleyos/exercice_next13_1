@@ -4,21 +4,21 @@ import BlogList from '@/app/_components/BlogList'
 import SearchBar, { filterSearched } from '@/app/_components/SearchBar'
 import errorToast from '@/helpers/errors'
 import { useAppStore } from '@/helpers/store'
-import { Heading, useToast } from '@chakra-ui/react'
+import { Heading, Spinner, useToast } from '@chakra-ui/react'
 import filter from 'lodash/filter'
-import isEmpty from 'lodash/isEmpty'
 import { useState } from 'react'
 import useAsyncEffect from 'use-async-effect'
+import { shallow } from 'zustand/shallow'
 
 const Home = () => {
   const [searchTerm, setSearchTerm] = useState<string>('')
-  const posts = useAppStore(state => state.posts)
-  const authors = useAppStore(state => state.authors)
-  const fetch = useAppStore(state => state.fetch)
+  const [posts, authors, fetch, loading] = useAppStore(
+    state => [state.posts, state.authors, state.fetch, state.loading],
+    shallow
+  )
   const toast = useToast()
 
   useAsyncEffect(async () => {
-    if (!isEmpty(posts)) return
     try {
       await fetch()
     } catch (e) {
@@ -30,7 +30,9 @@ const Home = () => {
     <>
       <Heading>Blog Posts</Heading>
       <SearchBar setSearchTerm={setSearchTerm} value='Search posts' />
-      {authors && posts && (
+      {loading ? (
+        <Spinner />
+      ) : (
         <BlogList
           page={1}
           posts={filter(posts, post => filterSearched(searchTerm, [post.title, post.body]))}

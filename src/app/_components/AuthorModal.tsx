@@ -1,5 +1,6 @@
+'use client'
+
 import { User } from '@/types'
-import { Link } from '@chakra-ui/next-js'
 import {
   Button,
   Center,
@@ -15,6 +16,7 @@ import {
   Text,
   VStack
 } from '@chakra-ui/react'
+import Link from 'next/link'
 import { IoMdGlobe, IoMdPin } from 'react-icons/io'
 import { MdEmail, MdPhone } from 'react-icons/md'
 
@@ -35,21 +37,21 @@ const AuthorModal = ({ author, isOpen, onClose }: Props) => (
       <ModalCloseButton />
       <ModalBody>
         <VStack>
-          <Flex w='full' justifyContent='left' alignItems='center'>
+          <Flex w='full' justifyContent='start' alignItems='center'>
             <MdPhone />
-            <Text ml='8px'>{author.phone}</Text>
+            <Text ml={2}>{author.phone}</Text>
           </Flex>
-          <Flex w='full' justifyContent='left' alignItems='center'>
+          <Flex w='full' justifyContent='start' alignItems='center'>
             <IoMdGlobe />
-            <Text ml='8px'>{author.website}</Text>
+            <Text ml={2}>{author.website}</Text>
           </Flex>
-          <Flex w='full' justifyContent='left' alignItems='center'>
+          <Flex w='full' justifyContent='start' alignItems='center'>
             <MdEmail />
-            <Text ml='8px'>{author.email}</Text>
+            <Text ml={2}>{author.email}</Text>
           </Flex>
-          <Flex w='full' justifyContent='left' alignItems='center'>
+          <Flex w='full' justifyContent='start' alignItems='center'>
             <IoMdPin />
-            <Text ml='8px'>
+            <Text ml={2}>
               {author.address.suite} {author.address.street}, {author.address.zipcode}{' '}
               {author.address.city}
             </Text>

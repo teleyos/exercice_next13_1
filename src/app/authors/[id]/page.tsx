@@ -12,13 +12,15 @@ import isEqual from 'lodash/isEqual'
 import parseInt from 'lodash/parseInt'
 import { useState } from 'react'
 import useAsyncEffect from 'use-async-effect'
+import { shallow } from 'zustand/shallow'
 
-export default function Author({ params }: { params: { id: string } }) {
+const Author = ({ params }: { params: { id: string } }) => {
   const [searchTerm, setSearchTerm] = useState<string>('')
   const [currentAuthor, setCurrentAuthor] = useState<User>()
-  const posts = useAppStore(state => state.posts)
-  const authors = useAppStore(state => state.authors)
-  const fetch = useAppStore(state => state.fetch)
+  const [posts, authors, fetch] = useAppStore(
+    state => [state.posts, state.authors, state.fetch],
+    shallow
+  )
   const toast = useToast()
 
   useAsyncEffect(async () => {
@@ -38,11 +40,14 @@ export default function Author({ params }: { params: { id: string } }) {
         <BlogList
           page={1}
           posts={filter(
-            filter(posts, post => isEqual(post.userId, parseInt(params.id))),
-            post => filterSearched(searchTerm, [post.body, post.title])
+            posts,
+            post =>
+              isEqual(post.userId, parseInt(params.id)) &&
+              filterSearched(searchTerm, [post.body, post.title])
           )}
         />
       )}
     </>
   )
 }
+export default Author
