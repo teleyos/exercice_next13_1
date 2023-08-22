@@ -17,7 +17,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => (
     <head>
       <title>Owo</title>
     </head>
-    <body>
+    <body suppressHydrationWarning>
       <Providers>
         <Container maxW='container.sm' centerContent>
           <VStack w='full'>
