@@ -32,4 +32,4 @@ const PagePicker = ({ currentPageIndex, setPage, lastPageIndex }: Props) => {
   )
 }
 
-export default PagePicker
+export { PagePicker }

@@ -1,7 +1,7 @@
 'use client'
 
-import AuthorModal from '@/app/_components/AuthorModal'
-import EditableControls from '@/app/_components/EditableControls'
+import { AuthorModal } from '@/app/_components/AuthorModal'
+import { EditableControls } from '@/app/_components/EditableControls'
 import { useAppStore } from '@/helpers/store'
 import { Post, User } from '@/types'
 import { Card, CardBody, CardFooter, CardHeader } from '@chakra-ui/card'
@@ -16,7 +16,6 @@ import {
   Text,
   useDisclosure
 } from '@chakra-ui/react'
-import { shallow } from 'zustand/shallow'
 
 type Props = {
   post: Post
@@ -24,10 +23,11 @@ type Props = {
 }
 
 const PostCard = ({ post, author }: Props) => {
-  const [deletePost, editTitle, editBody] = useAppStore(
-    state => [state.deletePost, state.editTitle, state.editBody],
-    shallow
-  )
+  const [deletePost, editTitle, editBody] = useAppStore(state => [
+    state.deletePost,
+    state.editTitle,
+    state.editBody
+  ])
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (
@@ -71,4 +71,4 @@ const PostCard = ({ post, author }: Props) => {
   )
 }
 
-export default PostCard
+export { PostCard }

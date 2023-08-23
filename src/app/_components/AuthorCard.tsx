@@ -1,5 +1,5 @@
 'use client'
-import AuthorModal from '@/app/_components/AuthorModal'
+import { AuthorModal } from '@/app/_components/AuthorModal'
 import { User } from '@/types'
 import { Card, CardHeader } from '@chakra-ui/card'
 import { Box, Button, Flex, Heading, Text, useDisclosure } from '@chakra-ui/react'

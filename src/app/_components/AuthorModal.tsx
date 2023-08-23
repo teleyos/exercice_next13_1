@@ -69,4 +69,4 @@ const AuthorModal = ({ author, isOpen, onClose }: Props) => (
   </Modal>
 )
 
-export default AuthorModal
+export { AuthorModal }

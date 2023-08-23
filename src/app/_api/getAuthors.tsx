@@ -1,5 +1,5 @@
 import { User } from '@/types'
-import api from '@/helpers/api'
+import { api } from '@/helpers/api'
 
 export const getAuthors = async (): Promise<User[]> => {
   try {

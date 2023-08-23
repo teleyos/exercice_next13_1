@@ -18,4 +18,4 @@ const EditableControls = () => {
     </Flex>
   )
 }
-export default EditableControls
+export { EditableControls }

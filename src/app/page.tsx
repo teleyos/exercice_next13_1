@@ -1,21 +1,22 @@
 'use client'
 
-import BlogList from '@/app/_components/BlogList'
-import SearchBar, { filterSearched } from '@/app/_components/SearchBar'
-import errorToast from '@/helpers/errors'
+import { BlogList } from '@/app/_components/BlogList'
+import { filterSearched, SearchBar } from '@/app/_components/SearchBar'
+import { errorToast } from '@/helpers/errors'
 import { useAppStore } from '@/helpers/store'
 import { Heading, Spinner, useToast } from '@chakra-ui/react'
 import filter from 'lodash/filter'
 import { useState } from 'react'
 import useAsyncEffect from 'use-async-effect'
-import { shallow } from 'zustand/shallow'
 
 const Home = () => {
   const [searchTerm, setSearchTerm] = useState<string>('')
-  const [posts, authors, fetch, loading] = useAppStore(
-    state => [state.posts, state.authors, state.fetch, state.loading],
-    shallow
-  )
+  const [posts, authors, fetch, loading] = useAppStore(state => [
+    state.posts,
+    state.authors,
+    state.fetch,
+    state.loading
+  ])
   const toast = useToast()
 
   useAsyncEffect(async () => {

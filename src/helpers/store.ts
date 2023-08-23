@@ -1,8 +1,9 @@
 import { getAuthors } from '@/app/_api/getAuthors'
 import { getPosts } from '@/app/_api/getPosts'
 import { Post, User } from '@/types'
-import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
+import { shallow } from 'zustand/shallow'
+import { createWithEqualityFn } from 'zustand/traditional'
 
 type AppStore = {
   posts: Post[]
@@ -17,7 +18,7 @@ type AppStore = {
   editBody: (postId: number, body: string) => void
 }
 
-export const useAppStore = create(
+export const useAppStore = createWithEqualityFn(
   persist<AppStore>(
     (set, get) => ({
       loading: true,
@@ -54,5 +55,6 @@ export const useAppStore = create(
     {
       name: 'posts-authors-storage'
     }
-  )
+  ),
+  shallow
 )

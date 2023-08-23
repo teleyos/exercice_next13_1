@@ -26,8 +26,8 @@ const SearchBar = ({ setSearchTerm, value }: Props) => (
   </InputGroup>
 )
 
-export default SearchBar
-
-export const filterSearched = (searchTerm: string, paramsToCheck: string[]) => {
+const filterSearched = (searchTerm: string, paramsToCheck: string[]) => {
   return some(paramsToCheck, param => includes(lowerCase(param), lowerCase(searchTerm)))
 }
+
+export { SearchBar, filterSearched }

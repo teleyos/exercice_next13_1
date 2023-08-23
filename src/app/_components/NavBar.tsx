@@ -4,10 +4,9 @@ import { useAppStore } from '@/helpers/store'
 import { Button, Menu, MenuButton, MenuItem, MenuList, Text } from '@chakra-ui/react'
 import Link from 'next/link'
 import { IoChevronDown } from 'react-icons/io5'
-import { shallow } from 'zustand/shallow'
 
 export const NavBar = () => {
-  const [reset, fetch] = useAppStore(state => [state.reset, state.fetch], shallow)
+  const [reset, fetch] = useAppStore(state => [state.reset, state.fetch])
 
   return (
     <Menu>

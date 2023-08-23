@@ -9,4 +9,4 @@ const errorToast = (toast: CreateToastFnReturn, message: string) =>
     isClosable: true
   })
 
-export default errorToast
+export { errorToast }

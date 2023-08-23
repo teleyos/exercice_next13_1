@@ -1,7 +1,7 @@
 'use client'
 
-import PagePicker from '@/app/_components/PagePicker'
-import PostCard from '@/app/_components/PostCard'
+import { PagePicker } from '@/app/_components/PagePicker'
+import { PostCard } from '@/app/_components/PostCard'
 import { Post, User } from '@/types'
 import { Text, VStack } from '@chakra-ui/react'
 import find from 'lodash/find'
@@ -11,7 +11,7 @@ import isEqual from 'lodash/isEqual'
 import map from 'lodash/map'
 import size from 'lodash/size'
 import slice from 'lodash/slice'
-import { useState } from 'react'
+import { Children, useState } from 'react'
 
 type Props = {
   page: number
@@ -41,13 +41,17 @@ const BlogList = ({ page, posts, authors }: Props) => {
   const PostList = () =>
     !isEmpty(posts) ? (
       <VStack>
-        {map(slice(posts, (currentPage - 1) * POST_PER_PAGE, currentPage * POST_PER_PAGE), post => (
-          <PostCard
-            post={post}
-            author={find(authors, author => isEqual(author.id, post.userId))}
-            key={post.id}
-          />
-        ))}
+        {Children.toArray(
+          map(
+            slice(posts, (currentPage - 1) * POST_PER_PAGE, currentPage * POST_PER_PAGE),
+            post => (
+              <PostCard
+                post={post}
+                author={find(authors, author => isEqual(author.id, post.userId))}
+              />
+            )
+          )
+        )}
       </VStack>
     ) : (
       <Text>No posts found with these filter</Text>
@@ -62,4 +66,4 @@ const BlogList = ({ page, posts, authors }: Props) => {
   )
 }
 
-export default BlogList
+export { BlogList }

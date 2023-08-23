@@ -1,7 +1,7 @@
 'use client'
-import BlogList from '@/app/_components/BlogList'
-import SearchBar, { filterSearched } from '@/app/_components/SearchBar'
-import errorToast from '@/helpers/errors'
+import { BlogList } from '@/app/_components/BlogList'
+import { filterSearched, SearchBar } from '@/app/_components/SearchBar'
+import { errorToast } from '@/helpers/errors'
 import { useAppStore } from '@/helpers/store'
 import { User } from '@/types'
 import { Heading, useToast } from '@chakra-ui/react'
@@ -12,15 +12,17 @@ import isEqual from 'lodash/isEqual'
 import parseInt from 'lodash/parseInt'
 import { useState } from 'react'
 import useAsyncEffect from 'use-async-effect'
-import { shallow } from 'zustand/shallow'
 
-const Author = ({ params }: { params: { id: string } }) => {
+const Author = ({
+  params
+}: {
+  params: {
+    id: string
+  }
+}) => {
   const [searchTerm, setSearchTerm] = useState<string>('')
   const [currentAuthor, setCurrentAuthor] = useState<User>()
-  const [posts, authors, fetch] = useAppStore(
-    state => [state.posts, state.authors, state.fetch],
-    shallow
-  )
+  const [posts, authors, fetch] = useAppStore(state => [state.posts, state.authors, state.fetch])
   const toast = useToast()
 
   useAsyncEffect(async () => {

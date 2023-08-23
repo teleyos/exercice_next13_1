@@ -1,5 +1,5 @@
 import { Post } from '@/types'
-import api from '@/helpers/api'
+import { api } from '@/helpers/api'
 
 export const getPosts = async (): Promise<Post[]> => {
   try {
